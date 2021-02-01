@@ -1,74 +1,71 @@
 import React from 'react'
+import { Button, Form } from 'react-bootstrap'
 
 //a reusable button component
 export const BtnComp=({label, ...rest})=>{
     return(
-        <button {...rest}>{label}</button>
+        <Button {...rest}>{label}</Button>
     )
 }
 
-//a reusable file upload input component
-export const FileComp=({errProp, label, name, refProp, ...rest})=>{
+//resusable checkbox component
+export const CheckboxComp=({errProp, label, name, refProp, ...rest})=>{
     return(
-        <div>
-            <label htmlFor={name}>{label}</label>
-            <input type='file' name={name} ref={refProp} {...rest}/>
-            {errProp[name]&&<span>{errProp[name].message}</span>}
-        </div>
+        <Form.Group controlId={name}>
+            <Form.Check type='checkbox' label={label} name={name} ref={refProp} />
+            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+        </Form.Group>
     )
 }
 
 //a resusalbe form wrapper component
-export const FormComp =({children, submitProp})=>{
+export const FormComp =({children, submitProp, ...rest})=>{
     return(
-        <form onSubmit={submitProp}>
+        <Form onSubmit={submitProp} {...rest}>
             {children}
-        </form>
+        </Form>
     )
 }
 
 //a reusable inpup component
 export const InputComp=({errProp, label, name, refProp, ...rest})=>{
     return(
-        <div>
-            <label htmlFor={name}>{label}</label>
-            <input name={name} ref={refProp} {...rest} />
-            {errProp[name]&&<span>{errProp[name].message}</span>}
-        </div>
+        <Form.Group controlId={name}  >
+            <Form.Label >{label}</Form.Label>
+            <Form.Control name={name} ref={refProp} {...rest} />
+            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+        </Form.Group>
     )
 }
 
 //reusable radio input component
 export const RadioComp=({errProp, label, name, radioOptions,  refProp, ...rest})=>{
     return(
-        <div>
-            <legend>{label}</legend>
+        <Form.Group controlId={name}>
+             <Form.Label>{label}</Form.Label>
             {
                 radioOptions.map(radio=>(
-                    <div key={radio.value}>
-                        <label>{radio.label}</label>
-                        <input name={name} type='radio' ref={refProp} value={radio.value} {...rest}/>
-                    </div>
+                    <Form.Check key={radio.value} type='radio' label={radio.label} name={name} ref={refProp} value={radio.value} {...rest}/>
                 ))
             }
-            {errProp[name]&&<span>{errProp[name].message}</span>}
-        </div>
+            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+        </Form.Group>
     )
 }
 
 //reusabel select input component
 export const SelectComp=({errProp, label, name, selectOptions, refProp, ...rest})=>{
     return(
-        <div>
-            <label htmlFor={name}>{label}</label>
-            <select name={name} ref={refProp}>
+        <Form.Group controlId={name}>
+            <Form.Label>{label}</Form.Label>
+            <Form.Control as="select" name={name} ref={refProp} {...rest} >
                 {
                     selectOptions.map(option=>(
-                            <option key={option.value} value={option.value}>{option.label}</option>
+                        <option key={option.value} value={option.value}>{option.label}</option>
                     ))
                 }
-            </select>
-            {errProp[name]&&<span>{errProp[name].message}</span>}
-        </div>
+            </Form.Control>
+            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+        </Form.Group>
     )
 }

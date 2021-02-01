@@ -2,8 +2,9 @@ import React from 'react'
 import {useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {BtnComp, FileComp, FormComp, InputComp, RadioComp, SelectComp} from './reusableFormComponents'
-import './formreusables.scss'
+import { Container } from 'react-bootstrap'
+import {BtnComp, CheckboxComp, FormComp, InputComp, RadioComp, SelectComp} from './reusableFormComponents'
+
 
 //values for radio input
 const radioOptions=[
@@ -34,6 +35,7 @@ const checkFileType=(data)=>{
     else return false
 }
 const validate= Yup.object().shape({
+    username: Yup.string().required('a username is required'),
     pic: Yup.mixed()
             .test('required', 'please attach a file', value=> value.length>0)
             .test('fileSize', 'file size too large', value=> checkFileSize(value))
@@ -53,16 +55,16 @@ const FormReusable = () => {
         console.log(value)
     }
     return (
-        <div className='form-input'>
+        <Container className='text-white p-5 border border-dark rounded'>
             <FormComp submitProp={handleSubmit(submitFn)}>
-                <InputComp errProp={errors} label={'User name: '} name={'username'} refProp={register} type={'text'}/>
+                <InputComp className='col-lg-8' errProp={errors} label={'User name: '} name={'username'} refProp={register} type={'text'}/>
                 <RadioComp errProp={errors} label={'Contact Method: '} name={'contact'} refProp={register} radioOptions={radioOptions}/>
-                <SelectComp errProp={errors} label={'Select your gender'} name={'gender'} refProp={register} selectOptions={selectOptions}/>
-                <InputComp errProp={errors} label={'Check box item'} name={'agree'} refProp={register} type={'checkbox'} />
-                <FileComp errProp={errors} label={'attach pic'} multiple name={'pic'} refProp={register} />
-                <BtnComp type={'submit'} label={'Submit'} />
+                <SelectComp className='col-4' errProp={errors} label={'Select your gender : '} name={'gender'} refProp={register} selectOptions={selectOptions}/>
+                <CheckboxComp errProp={errors} label={'check if you agree'} name={'agree'} refProp={register} type={'checkbox'} />
+                <InputComp errProp={errors} label={'Attach pic :'} multiple name={'pic'} refProp={register} type={'file'} />
+                <BtnComp variant={'primary'} type={'submit'} label={'Submit'} />
             </FormComp>  
-        </div>
+        </Container>
     )
 }
 

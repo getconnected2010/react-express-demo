@@ -9,6 +9,10 @@ app.get('/', (req, res)=>{
     res.send('hello')
 })
 
+app.post('/upload', (req, res)=>{
+    console.log(req)
+})
+
 const PORT = process.env.PORT || 8000
 app.listen(PORT, ()=>{
     console.log(`listening on port ${PORT}`)
