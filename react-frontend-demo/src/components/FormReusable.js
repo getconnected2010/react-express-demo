@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { Container } from 'react-bootstrap'
 import {BtnComp, CheckboxComp, FormComp, InputComp, RadioComp, SelectComp} from './reusableFormComponents'
-
+import {upload} from '../api/axios'
 
 //values for radio input
 const radioOptions=[
@@ -53,10 +53,11 @@ const FormReusable = () => {
 
     const submitFn=(value)=>{
         console.log(value)
+        upload(value)
     }
     return (
         <Container className='text-white p-5 border border-dark rounded'>
-            <FormComp submitProp={handleSubmit(submitFn)}>
+            <FormComp encType='multipart/form-data' submitProp={handleSubmit(submitFn)}>
                 <InputComp className='col-lg-8' errProp={errors} label={'User name: '} name={'username'} refProp={register} type={'text'}/>
                 <RadioComp errProp={errors} label={'Contact Method: '} name={'contact'} refProp={register} radioOptions={radioOptions}/>
                 <SelectComp className='col-4' errProp={errors} label={'Select your gender : '} name={'gender'} refProp={register} selectOptions={selectOptions}/>
