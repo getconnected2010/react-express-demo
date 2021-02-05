@@ -1,0 +1,81 @@
+@import'variables';
+@import 'mixins';
+@import 'extend';
+.StyleDemo{
+    height: 100vh;
+    background-color: $gray;
+    display: flex;
+    .one{
+        @include common($orange, 100px, 100px, 300px, 300px, relative, 50%);
+    }
+    .two{
+        @include common($orange, 300px, 10px, 200px, 345px, absolute);
+    }
+    .three{
+        @include common( $orange, 250px, 10px, 235px, 320px, absolute, null, rotate(60deg));
+    }
+    .four{
+        @include common( $orange, 250px, 10px, 225px, 320px, absolute, null, rotate(100deg));
+    }
+    .five{
+        @include common($orange, 250px, 10px, 200px, 330px, absolute, null, rotate(150deg));
+    }
+    .six{
+        @include common($lightGrayTransparent, 35px, 35px, 20px, 10px, absolute);
+        @extend %radiusZ;
+    }
+    .seven{
+        @include common($lightGrayTransparent, 15px, 15px, 60px, 70px, absolute);
+        @extend %radiusZ;
+    }
+    .eight{
+        @include common($darkGrayTransparent, 15px, 15px, 30px, 80px, absolute);
+        @extend %radiusZ;
+    }
+    .nine{
+        @include common( $darkGrayTransparent, 20px, 20px, 70px, 20px, absolute);
+        @extend %radiusZ;
+    }
+    .ten{
+        @include common($darkGrayTransparent, 30px, 30px, 50px, 60px, absolute);
+        @extend %radiusZ;
+    }
+    h4{
+        @include common($darkRed, 40px, 300px,450px, 200px, absolute);
+        text-align: center;
+        border-radius: 50px;
+        &:hover {
+            @extend %radiusZ;
+            @extend .spin;
+        }
+    }
+    button{
+        @include common($blue, 60px, 100px, 650px, 300px, absolute);
+        border-radius: 52px;
+    }
+    .spin{
+        animation: rotate 2s linear 2;
+    }
+    @keyframes rotate{
+        0%{
+            transform: rotate(0deg);
+            background-color:$yellow;
+        }
+        25%{
+            transform: rotate(90deg);
+            background-color: $green;
+        }
+        50%{
+            transform: rotate(180deg);
+            background-color: $blue;
+        }
+        75%{
+            transform: rotate(270deg);
+            background-color:$white;
+        }
+        90%{
+            transform: rotate(360deg);
+            background-color: $red;
+        }
+    }
+}

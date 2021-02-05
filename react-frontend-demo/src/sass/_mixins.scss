@@ -1,0 +1,16 @@
+@mixin common($color, $height, $width, $top, $left, $position, $brRad: null, $trans: null) {
+    height: $height;
+    width: $width;
+    position: $position;
+    top: $top;
+    left: $left;
+    border-radius: $brRad;
+    transform: $trans;
+    background-color: $color;
+}
+@mixin flex($dir: null, $just:null, $align:null){
+    display:flex;
+    flex-direction: $dir;
+    justify-content: $just;
+    align-items: $align;
+}
