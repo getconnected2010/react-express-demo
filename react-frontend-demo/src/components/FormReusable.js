@@ -56,16 +56,16 @@ const FormReusable = () => {
         upload(value)
     }
     return (
-        <Container className='text-white p-5 border border-dark rounded'>
+        <div className='parentContainer formReusable'>
             <FormComp encType='multipart/form-data' submitProp={handleSubmit(submitFn)}>
-                <InputComp className='col-lg-8' errProp={errors} label={'User name: '} name={'username'} refProp={register} type={'text'}/>
+                <InputComp errProp={errors} label={'User name: '} name={'username'} refProp={register} type={'text'}/>
                 <RadioComp errProp={errors} label={'Contact Method: '} name={'contact'} refProp={register} radioOptions={radioOptions}/>
-                <SelectComp className='col-4' errProp={errors} label={'Select your gender : '} name={'gender'} refProp={register} selectOptions={selectOptions}/>
+                <SelectComp errProp={errors} label={'Select your gender : '} name={'gender'} refProp={register} selectOptions={selectOptions}/>
                 <CheckboxComp errProp={errors} label={'check if you agree'} name={'agree'} refProp={register} type={'checkbox'} />
                 <InputComp errProp={errors} label={'Attach pic :'} multiple name={'pic'} refProp={register} type={'file'} />
                 <BtnComp variant={'primary'} type={'submit'} label={'Submit'} />
             </FormComp>  
-        </Container>
+        </div>
     )
 }
 

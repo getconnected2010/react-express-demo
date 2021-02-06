@@ -1,0 +1,60 @@
+.StyleDemo{
+    display: flex;
+    .one{
+        @include divContainer($orange, 100px, 100px, 300px, 300px, relative, 50%);
+    }
+    .two{
+        @include divContainer($orange, 300px, 10px, 200px, 345px, absolute);
+    }
+    .three{
+        @include divContainer( $orange, 250px, 10px, 235px, 320px, absolute, null, rotate(60deg));
+    }
+    .four{
+        @include divContainer( $orange, 250px, 10px, 225px, 320px, absolute, null, rotate(100deg));
+    }
+    .five{
+        @include divContainer($orange, 250px, 10px, 200px, 330px, absolute, null, rotate(150deg));
+    }
+    .six{
+        @include divContainer($lightGrayTransparent, 35px, 35px, 20px, 10px, absolute);
+        @extend %radiusZ;
+    }
+    .seven{
+        @include divContainer($lightGrayTransparent, 15px, 15px, 60px, 70px, absolute);
+        @extend %radiusZ;
+    }
+    .eight{
+        @include divContainer($darkGrayTransparent, 15px, 15px, 30px, 80px, absolute);
+        @extend %radiusZ;
+    }
+    .nine{
+        @include divContainer( $darkGrayTransparent, 20px, 20px, 70px, 20px, absolute);
+        @extend %radiusZ;
+    }
+    .ten{
+        @include divContainer($darkGrayTransparent, 30px, 30px, 50px, 60px, absolute);
+        @extend %radiusZ;
+    }
+    h4{
+        @include divContainer($darkRed, 40px, 300px,450px, 200px, absolute);
+        @extend .quotes;
+        text-align: center;
+        border-radius: 50px;
+        color: set-bkgnd-clr($darkRed);
+        &:hover {
+            @extend %radiusZ;
+            @include spinAnime(2s, 2)
+        }
+    }
+    button{
+        @include divContainer($blue, 60px, 100px, 650px, 300px, absolute);
+        border-radius: 52px;
+        color: set-bkgnd-clr($blue);
+        &:before{
+            content: '<';
+            color: $red;
+        }
+        @extend .quotes;
+    }
+    
+}

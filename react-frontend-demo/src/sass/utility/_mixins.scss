@@ -1,4 +1,4 @@
-@mixin common($color, $height, $width, $top, $left, $position, $brRad: null, $trans: null) {
+@mixin divContainer($color, $height, $width, $top:null, $left:null, $position: null, $brRad: null, $trans: null) {
     height: $height;
     width: $width;
     position: $position;

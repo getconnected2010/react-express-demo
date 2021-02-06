@@ -1,0 +1,16 @@
+@import'./utility/variables';
+@import './utility/functions';
+@import './utility/mixins';
+@import './utility/extend';
+@import './utility/animation';
+@import './utility/sharedClasses';
+
+//import page partials
+@import './pages/index';
+@import './pages/app';
+@import './pages/nav';
+
+@import './pages/fileUpload';
+@import './pages/formReusable';
+@import './pages/imagePreview';
+@import './pages/styleDemo';

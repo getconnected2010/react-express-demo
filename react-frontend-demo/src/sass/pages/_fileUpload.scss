@@ -1,0 +1,9 @@
+.fileUpload{
+    form{
+        @include divContainer($gray, 80%, 80%, $brRad: 1rem);
+        max-width: 700px;
+        margin: 1rem auto;
+        padding: 1rem;
+        font-size: $medFont;
+    }
+}

@@ -1,0 +1,23 @@
+//container wrapper class
+.parentContainer{
+    background-color: lighten($gray, 40);
+    min-height: 95vh;
+    padding-top: 1px;
+}
+//class to be added to an element in js to create spin animation
+.spin{
+    @include spinAnime(2s, 2);
+}
+//class to be extended to wrap content in quotation marks
+.quotes{
+    &:before{
+        content: "'";
+    }
+    &:after{
+        content: "'";
+    }
+}
+//any element with .error class will auto have this attribute of red text
+.error{
+    @extend %error
+}

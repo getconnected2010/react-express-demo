@@ -13,7 +13,7 @@ export const CheckboxComp=({errProp, label, name, refProp, ...rest})=>{
     return(
         <Form.Group controlId={name}>
             <Form.Check type='checkbox' label={label} name={name} ref={refProp} />
-            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+            {errProp[name]&&<span className='error'>{errProp[name].message}</span>}
         </Form.Group>
     )
 }
@@ -33,7 +33,7 @@ export const InputComp=({errProp, label, name, refProp, ...rest})=>{
         <Form.Group controlId={name}  >
             <Form.Label >{label}</Form.Label>
             <Form.Control name={name} ref={refProp} {...rest} />
-            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+            {errProp[name]&&<span className='error'>{errProp[name].message}</span>}
         </Form.Group>
     )
 }
@@ -48,7 +48,7 @@ export const RadioComp=({errProp, label, name, radioOptions,  refProp, ...rest})
                     <Form.Check key={radio.value} type='radio' label={radio.label} name={name} ref={refProp} value={radio.value} {...rest}/>
                 ))
             }
-            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+            {errProp[name]&&<span className='error'>{errProp[name].message}</span>}
         </Form.Group>
     )
 }
@@ -65,7 +65,7 @@ export const SelectComp=({errProp, label, name, selectOptions, refProp, ...rest}
                     ))
                 }
             </Form.Control>
-            {errProp[name]&&<span className='text-warning'>{errProp[name].message}</span>}
+            {errProp[name]&&<span className='error'>{errProp[name].message}</span>}
         </Form.Group>
     )
 }

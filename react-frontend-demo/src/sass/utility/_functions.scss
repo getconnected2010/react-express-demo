@@ -1,0 +1,7 @@
+@function set-bkgnd-clr($color){
+    @if(lightness($color)>70){
+        @return $dark;
+    }@else{
+        @return $white;
+    }
+}

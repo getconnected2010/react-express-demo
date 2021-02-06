@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
-import '../sass/styleDemo.scss'
+// import '../sass/styleDemo.scss'
 
 const StyleDemo = () => {
     const [spin, setSpin] = useState('')
     return (
-        <div className='StyleDemo'>
+        <div className='parentContainer StyleDemo'>
             <div className={`one ${spin}`} onAnimationEnd={()=>setSpin('')}>
                 <div className='six'></div>
                 <div className='seven'></div>
