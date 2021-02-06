@@ -28,11 +28,6 @@ const delay = t => new Promise(resolve=> setTimeout(resolve, t))
 multerMiddleware.array('pic')
 //upload to s3
 app.post('/upload', multerMiddleware.array('pic'), async (req, res)=>{
-    const url = req.body.username
-    const urlArr = url.split(/(?:\.)+/)
-    const picS3Bucket = urlArr[0].split(/(?:\/)+/)[1]
-    const picS3Key = urlArr[3].split(/(?:\/)+/)[1]
-    const picUserId = urlArr[4]
 
         //check if a file is attached
         if(req.files.length===0){
@@ -70,34 +65,39 @@ app.post('/upload', multerMiddleware.array('pic'), async (req, res)=>{
         }
      
         //upload to s3
-        let dataArr=[]
-        for(const file of req.files){
-            const params={
-                ACL:'public-read',
-                Bucket: process.env.AWS_S3_BUCKET,
-                Body: file.buffer,
-                Key: Date.now()+'.'+user_id
-            }
-            try {
-                const stored = await s3.upload(params).promise()
-                dataArr.push(stored.Location)
-            } catch (error) {
-                errorArr.push({msg: 'error uploading file to db'})
-            }
-        }
-        if(errorArr.length!==0){
-            console.log('errors', errorArr)
-            return
-        }
-        console.log('data', dataArr)
+        // let dataArr=[]
+        // for(const file of req.files){
+        //     const params={
+        //         ACL:'public-read',
+        //         Bucket: process.env.AWS_S3_BUCKET,
+        //         Body: file.buffer,
+        //         Key: Date.now()+'.'+user_id
+        //     }
+        //     try {
+        //         const stored = await s3.upload(params).promise()
+        //         dataArr.push(stored.Location)
+        //     } catch (error) {
+        //         errorArr.push({msg: 'error uploading file to db'})
+        //     }
+        // }
+        // if(errorArr.length!==0){
+        //     console.log('errors', errorArr)
+        //     return
+        // }
+        // console.log('data', dataArr)
 })
 
 //delete from s3 using key
 app.delete('/delete/:key', (req, res)=>{
-    const key = req.params.key
-    console.log(key)
+    const s3Url = req.params.key
+    const urlArr= s3Url.split('.').map(item=>{
+        return item.split('/')
+    })
+    const picS3Bucket = urlArr[0][2]
+    const key = urlArr[3][1]
+    const picUserId = urlArr[4][0]
     const params = {
-        Bucket: process.env.AWS_S3_BUCKET,
+        Bucket: picS3Bucket,
         Key: key
     }
     s3.deleteObject(params, (error, data)=>{
